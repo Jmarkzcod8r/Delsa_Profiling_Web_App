@@ -1,7 +1,7 @@
 //Only db.js and Client.js are required here...
 import dbConnect from "../mongodb/db";
 // import Client from "../mongodb/ModelClient";
-import ModelFeed from "../mongodb/feedback";
+import Profiling from "../mongodb/Profiling";
 // import axios from "axios";
 import { MongoClient} from "mongodb"
 import { Getuserinfo } from "../../../functions global/Getuserinfo";
@@ -105,48 +105,48 @@ export default async function handler(req, res) {
 
 
   const { method } = req;
-  const { log, desc, comments, name, date, highlight, credemail} = req.body;
+  const {email} = req.body;
   switch (method) {
 
-  //   case "GET": //---> when 'axios.get' is called in our frontend, the system
-  //               // goes to this .. GET & FIND
-  //     try {
-  //       const clients = await Client.find({
-  //         }); //---> clients is an objects
-  // // Deleting below produces an error: API resolved without
-  // // sending a response for /api/clients, this may result in stalled requests.
-  //       res.status(200) //---> The '.status' in 'res.status' ig ignorable.
-  //       // as res in integrated with data received. res & data go in twined.
-  //                     .json({clients });
-  //       // res.json(')
-  //     } catch (error) {
-  //       console.log(error);
-  //       res.status(500).json({ success: false, error });
-  //       // console.log('sorry');
-  //     }
-  //     break;
+    case "GET": //---> when 'axios.get' is called in our frontend, the system
+                // goes to this .. GET & FIND
+      try {
+        const clients = await Profiling.find({
+          }); //---> clients is an objects
+  // Deleting below produces an error: API resolved without
+  // sending a response for /api/clients, this may result in stalled requests.
+        res.status(200) //---> The '.status' in 'res.status' ig ignorable.
+        // as res in integrated with data received. res & data go in twined.
+                      .json({clients });
+        // res.json(')
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, error });
+        // console.log('sorry');
+      }
+      break;
 
     case "POST": //---> when 'axios.post' is called in our frontend, the system
     // goes to this .. POST & CREATE ... IF-THROW
 
       try {
-        const { feedback,date, credemail } = req.body;
+        const { email } = req.body;
 
-        // const Clientnew =
-        //       mongoose.models.log
-        //     || mongoose.model(log, ClientSchema);
+        // const Profiling =
+        //       mongoose.models.Profiling
+        //     || mongoose.model(Profiling, profileSchema);
         // new Clientnew({log}).save()
         await
-        new ModelFeed({feedback,date, credemail }).save();
+        new Profiling({email }).save();
         // calling res gives a response to the screen.
         // await Client.save()
         if (feedback){
-          var status = 'Your feedback have been accounted for. Thank You.';
+          var status = 'Your feedback have been accounted for. Thank You!';
         } else {
           var status = 'Uh-Oh. Something seems to be wrong. Try again later.'
         }
 
-              res.status(200).json({success:true, body:req.body , })
+        res.status(200).json({success:true, body:req.body , status})
       } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, error });

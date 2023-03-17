@@ -1,3 +1,5 @@
+// This is the main backend for your web app. The rest are secondaries.
+// db.js -> dri bilin imo package para i.send...=>
 import mongoose from "mongoose";
 
 const connection = {};

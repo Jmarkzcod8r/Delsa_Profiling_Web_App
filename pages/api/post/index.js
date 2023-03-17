@@ -10,13 +10,14 @@ dbConnect(); //---> This setups the database for this page.
 export default async function handler(req, res) {
 
   const { method } = req;
-  const { log, desc, comments, name, date, highlight, credemail} = req.body;
+  const { email} = req.body;
   switch (method) {
 
     case "GET": //---> when 'axios.get' is called in our frontend, the system
                 // goes to this .. GET & FIND
+                console.log("commencing get ", {email})
       try {
-        const clients = await Client.find({
+        const clients = await Profiling.find({ email: email
           }); //---> clients is an objects
   // Deleting below produces an error: API resolved without
   // sending a response for /api/clients, this may result in stalled requests.
@@ -33,14 +34,14 @@ export default async function handler(req, res) {
 
     case "POST": //---> when 'axios.post' is called in our frontend, the system
     // goes to this .. POST & CREATE ... IF-THROW
-
+        console.log ("commencong POST for post folder ", email)
         try {
-        const { email} = req.body;
+        // const {email} = req.body;
 
-        await
-        new Profiling ({email}).save();
+        const data = await
+        Profiling.find ({email: email})
 
-        res.status(200).json({success:true, body:req.body , })
+        res.status(200).json({data: data  })
       } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, error });

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Getuserinfo } from "../../../functions global/Getuserinfo";
 // This defines the schema seetings for our database.
-// Services --> Models --> 
+// Services --> Models -->
 // const ClientSchema = new mongoose.Schema({
 //   name: String,
 //   email: String,
@@ -18,7 +18,7 @@ import { Getuserinfo } from "../../../functions global/Getuserinfo";
 //-----------------Below is a copy from above----------------------
 if (typeof window !== 'undefined') {
   const user = Getuserinfo()
-var useremail = user.email 
+var useremail = user.email
   //   const user = Getuserinfo();
   //   res.json(user.email)
   // }
@@ -31,26 +31,35 @@ let useremaillist=[];
 useremaillist.append(user.email) }
 
 
-const FeedbackSchema = new mongoose.Schema({
-  // _id: mongoose.Schema.Types.ObjectId, //---> This is considerable 
-  feedback: String,
-  // log: String,
-  // desc: String,
-  // comments:String,
-  // name: String,
-  date: String,
-  // highlight: String,
-  credemail: String,
- 
+const profileSchema = new mongoose.Schema({
+  // _id: mongoose.Schema.Types.ObjectId, //---> This is considerable
+  email: String,
+  password: String,
+  firstname: String,
+  lastname: String,
+  middlename: String,
+  nationality: String,
+  birthday: String,
+  gender: String,
+  presentaddress: String,
+  presentcity: String,
+  permanentaddress: String,
+  permanentcity: String,
+  occupation: String,
+  company: String,
+  fathername: String,
+  mothername: String,
+
+
 });
 
 
-const ModelFeed = 
-          mongoose.models.feedback
-          || mongoose.model("feedback", FeedbackSchema);
+const Profiling =
+          mongoose.models.profiling
+          || mongoose.model("profiling", profileSchema);
 
-// const Client = 
+// const Client =
 //             mongoose.models.useremail
 //           || mongoose.model(useremail, ClientSchema);
 
-export default ModelFeed;
+export default Profiling;
