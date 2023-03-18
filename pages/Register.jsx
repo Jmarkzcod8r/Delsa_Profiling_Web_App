@@ -84,7 +84,7 @@ export default function Logmein () {
           else {
               console.log('Email usable') ;
               setHideError (true) ;
-              const client = await axios.post("http://localhost:3000" +"/api"+"/register" ,
+              const client = await axios.post(baseURL +"/api"+"/register" ,
               {email: email , password : password, firstname: firstname, lastname: lastname ,
                 middlename: middlename , nationality: nationality , birthday: birthday, gender: gender,
                 presentaddress: presentaddress, presentcity: presentcity, permanentaddress: permanentaddress,
