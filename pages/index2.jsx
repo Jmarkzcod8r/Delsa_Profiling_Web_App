@@ -23,7 +23,7 @@ import Blank from './Icons/Blank.png'
 import Feedback from './Icons/feedback.png'
 import changes from './Icons/changes.png'
 import { ForphotoURL } from "./Components/Usernav";
-import {thisbase} from "../functions global/thisbase";
+import {thisbase} from "../functions global/geturl";
 import { list } from "postcss";
 
 export default function Index  (){

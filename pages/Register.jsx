@@ -4,6 +4,9 @@ import Image from 'next/image';
 import CotPic from "./Pics/Cot_panorama.png"
 
 export default function Logmein () {
+
+  const [baseURL, setBaseURL] = useState ('')
+
   const [status, setStatus] = useState('regular')
 
   const [hideError , setHideError] = useState (true)
@@ -55,11 +58,17 @@ export default function Logmein () {
     baseURL: "http://localhost:3000/api/post",
   });
 
+  useEffect (()=> {
+    setBaseURL (localStorage.getItem("baseURL"))
+  })
+
+
+  // console.log("this is local storage email: ", localStorage.getItem("email"));
   const Savedb = async (e) => {e.preventDefault();
     //  const {email: email, password: password, firstname: firstname, lastname , middlename, nationality, birthday, gender,presentaddress , presentcity,
     //     permanentaddress, permanentcity, occupation, company, fathername, mothername } = req.body;
     try {
-      const response = await axios.post("http://localhost:3000/api"+"/post"
+      const response = await axios.post((localStorage.getItem("baseURL")) +"/api"+"/post"
 
       , {email: email}
       , {
@@ -75,7 +84,7 @@ export default function Logmein () {
           else {
               console.log('Email usable') ;
               setHideError (true) ;
-              const client = await axios.post("http://localhost:3000/api"+"/register" ,
+              const client = await axios.post("http://localhost:3000" +"/api"+"/register" ,
               {email: email , password : password, firstname: firstname, lastname: lastname ,
                 middlename: middlename , nationality: nationality , birthday: birthday, gender: gender,
                 presentaddress: presentaddress, presentcity: presentcity, permanentaddress: permanentaddress,
@@ -179,10 +188,7 @@ export default function Logmein () {
       console.log(mainlist)
     }
 
-  useEffect (()=> {
-    // getData()
 
-  })
   console.log(mainlist)
   return (
     <div className='bg-pink-300 h-screen flex justify-center items-center '>

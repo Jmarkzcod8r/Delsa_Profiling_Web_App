@@ -4,6 +4,8 @@ import Image from 'next/image';
 import CotPic from "./Pics/Cot_panorama.png"
 
 export default function Profile () {
+    const [baseURL, setBaseURL] = useState ('')
+
     const [profile, setProfile] = useState ('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -32,10 +34,12 @@ export default function Profile () {
 
     useEffect(() => {
         setEmail(JSON.parse(localStorage.getItem('email')));
+        // setBaseURL(JSON.parse(localStorage.getItem('email')));
+        console.log("this is base URL" , baseURL) //--> For evaluation
 
         async function getProfile() {
           try {
-            const { data } = await axios.post("http://localhost:3000/api/post", { email: email }, { headers: {'Content-Type': 'application/json' } });
+            const { data } = await axios.post( (localStorage.getItem('baseURL')) +"/api/post", { email: email }, { headers: {'Content-Type': 'application/json' } });
             try {
             if (data) {
                console.log ("data: ", data.data[0].gender)

@@ -11,6 +11,8 @@ import Profile from './Profile';
 
 const Register = () => {
 
+  const [baseURL, setBaseURL] = useState ('')
+  // console.log ("Page location is: ",window.location.href )
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -18,13 +20,18 @@ const Register = () => {
 
   const router = useRouter();
 
+  useEffect(()=> {
+    console.log ("Page location is: ",window.location.href ) ;
+    setBaseURL (localStorage.setItem('baseURL', window.location.href)) ;
+  })
+
   const SignIn = async () => {
 
-      try {
+        try {
         // Oh yeah! I forgot, this is the optimize way to send a "Post" to the back-end
         // await axios.get ()
 
-        const response = await axios.post("http://localhost:3000/api/pre-home"
+        const response = await axios.post(window.location.href + "/api/pre-home"
         , {email: email , password: password}
         , {
           headers: {'Content-Type': 'application/json',  } }) ;
@@ -36,6 +43,7 @@ const Register = () => {
               setHideError (true) ;
               console.log('Authenticated set to true and yeah! user can log in.')
               localStorage.setItem('email', JSON.stringify(email));
+
               {window.open("/Profile")}
               // Profile(response);
               // This is too complicated. I'll use localstorage. I think I just need the e-mail.
@@ -63,6 +71,8 @@ const Register = () => {
     e.preventDefault();
     setPassword(e.target.value)
   }
+
+
 
   return (
     // <div>
