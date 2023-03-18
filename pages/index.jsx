@@ -6,6 +6,9 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { useRouter } from "next/router" ;
 import CotPic from "./Pics/Cot_panorama.png"
+import CotSeal from "./Pics/Cot_seal.png"
+import CotBrgy from "./Pics/Cotbrgy.png"
+
 import Profile from './Profile';
 
 
@@ -80,7 +83,11 @@ const Register = () => {
  <Image className='absolute w-screen relative'
 src={CotPic} layout="fill"
 alt=' '  />
-      <div className=' bg-blue-100 h-5/8 pt-20 px-5  flex flex-col absolute opacity-[94%]'>
+      <div className=' bg-blue-100 h-5/8 pt-5 px-5  flex flex-col absolute opacity-[94%]'>
+      <div className='flex flex-row justify-around'>
+        <Image src={CotSeal} height={70} width={70} alt='' />
+        <Image src={CotBrgy} height={70} width={70} alt='' />
+      </div>
       <p className='text-center'> E-mail</p>
         <input className='m-2'  value={email} onChange={Inchange_Email}  placeholder='Juandelacruz@gmail.com'/>
         <p className='text-center'> Password</p>

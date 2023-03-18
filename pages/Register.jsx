@@ -2,6 +2,8 @@ import {React , useEffect, useState}from 'react'
 import axios from "axios";
 import Image from 'next/image';
 import CotPic from "./Pics/Cot_panorama.png"
+import CotSeal from "./Pics/Cot_seal.png"
+import CotBrgy from "./Pics/Cotbrgy.png"
 
 export default function Logmein () {
 
@@ -12,39 +14,39 @@ export default function Logmein () {
   const [hideError , setHideError] = useState (true)
   const [showConfirmation, setshowConfirmation] = useState (true)
 
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
-  // const [firstname, setFirstname] = useState('')
-  // const [lastname, setLastname] = useState('')
-  // const [middlename, setMiddlename] = useState('')
-  // const [nationality, setNationality] = useState('')
-  // const [birthday, setBirthday] = useState('')
-  // const [gender, setGender] = useState('')
-  // const [presentaddress, setPresentaddress] = useState('')
-  // const [presentcity, setPresentcity] = useState('')
-  // const [permanentaddress, setPermanentaddress] = useState('')
-  // const [permanentcity, setPermanentcity] = useState('')
-  // const [occupation, setOccupation] = useState('')
-  // const [company, setCompany] = useState('')
-  // const [fathername, setFathername] = useState('')
-  // const [mothername, setMothername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [firstname, setFirstname] = useState('')
+  const [lastname, setLastname] = useState('')
+  const [middlename, setMiddlename] = useState('')
+  const [nationality, setNationality] = useState('')
+  const [birthday, setBirthday] = useState('')
+  const [gender, setGender] = useState('')
+  const [presentaddress, setPresentaddress] = useState('')
+  const [presentcity, setPresentcity] = useState('')
+  const [permanentaddress, setPermanentaddress] = useState('')
+  const [permanentcity, setPermanentcity] = useState('')
+  const [occupation, setOccupation] = useState('')
+  const [company, setCompany] = useState('')
+  const [fathername, setFathername] = useState('')
+  const [mothername, setMothername] = useState('')
 
-  const [email, setEmail] = useState('juan@gmail.com')
-  const [password, setPassword] = useState('123456')
-  const [firstname, setFirstname] = useState('James')
-  const [lastname, setLastname] = useState('Macabulos')
-  const [middlename, setMiddlename] = useState('Demala')
-  const [nationality, setNationality] = useState('Filipino')
-  const [birthday, setBirthday] = useState('Dec. 12, 1992')
-  const [gender, setGender] = useState('Male')
-  const [presentaddress, setPresentaddress] = useState('B 14 L 21 mabin st.')
-  const [presentcity, setPresentcity] = useState('Cotabato City')
-  const [permanentaddress, setPermanentaddress] = useState('B 14 L 21 wjdasj')
-  const [permanentcity, setPermanentcity] = useState('Cotabato City')
-  const [occupation, setOccupation] = useState('employee')
-  const [company, setCompany] = useState('blue Jen')
-  const [fathername, setFathername] = useState('Benjamin Macabulos')
-  const [mothername, setMothername] = useState('Hermoine Macabulos')
+  // const [email, setEmail] = useState('juan@gmail.com')
+  // const [password, setPassword] = useState('123456')
+  // const [firstname, setFirstname] = useState('James')
+  // const [lastname, setLastname] = useState('Macabulos')
+  // const [middlename, setMiddlename] = useState('Demala')
+  // const [nationality, setNationality] = useState('Filipino')
+  // const [birthday, setBirthday] = useState('Dec. 12, 1992')
+  // const [gender, setGender] = useState('Male')
+  // const [presentaddress, setPresentaddress] = useState('B 14 L 21 mabin st.')
+  // const [presentcity, setPresentcity] = useState('Cotabato City')
+  // const [permanentaddress, setPermanentaddress] = useState('B 14 L 21 wjdasj')
+  // const [permanentcity, setPermanentcity] = useState('Cotabato City')
+  // const [occupation, setOccupation] = useState('employee')
+  // const [company, setCompany] = useState('blue Jen')
+  // const [fathername, setFathername] = useState('Benjamin Macabulos')
+  // const [mothername, setMothername] = useState('Hermoine Macabulos')
 
   const [mainlist, setMainlist] = useState([])
 
@@ -195,7 +197,11 @@ export default function Logmein () {
      <Image className='absolute w-screen relative'
 src={CotPic} layout="fill"
 alt=' '  />
-    <div className=' bg-blue-100  flex-col flex items-center pb-10 min-h-[65%] absolute opacity-[94%]'>
+    <div className=' bg-blue-100  pt-2 flex-col flex items-center pb-10 min-h-[65%] absolute opacity-[94%] scale-[80%]'>
+    <div className='flex flex-row justify-around w-full'>
+        <Image src={CotSeal} height={70} width={70} alt='' />
+        <Image src={CotBrgy} height={70} width={70} alt='' />
+      </div>
     <div className='bg-blue-100 flex-row flex'>
       <div className=' bg-blue-100 h-auto pt-5  flex flex-col m-3'>
       {/* <p className='text-center'> Registration Form</p> */}
