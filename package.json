@@ -14,6 +14,7 @@
     "os": false
   },
   "dependencies": {
+    "@google-cloud/storage": "^6.9.4",
     "axios": "^1.1.2",
     "express": "^4.18.2",
     "firebase": "^9.10.0",
@@ -21,6 +22,7 @@
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-icons": "^4.4.0",
     "sweetalert2": "^11.4.36",
     "typescript": "^4.8.4"

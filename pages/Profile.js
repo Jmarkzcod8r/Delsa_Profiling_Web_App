@@ -172,7 +172,7 @@ export default function Profile() {
         className=" w-[15em]  sm:min-w-[40em] bg-slate-300 sm:min-h-[80%] flex flex-col justify-center items-center
                   text-center absolute opacity-[96%]"
       >
-        <div>
+        <div >
           {adminOn == true ? (
             <div>
               <h1>Welcome Admin </h1>
