@@ -82,6 +82,8 @@ export default function Profile() {
   }
 
   useEffect(() => {
+    localStorage.setItem("lastname", lastname);
+    localStorage.setItem("middlename", middlename);
     if (type === "SuperAdmin" || type === "Admin") {
       setAdminOn(true);
     }
@@ -169,14 +171,18 @@ export default function Profile() {
       />
 
       <div
-        className=" w-[15em]  sm:min-w-[40em] bg-slate-300 sm:min-h-[80%] flex flex-col justify-center items-center
+        className="  sm:min-w-[40%] bg-slate-300 sm:min-h-[80%] flex flex-col justify-center items-center
                   text-center absolute opacity-[96%]"
       >
-        <div >
+        <div>
           {adminOn == true ? (
             <div>
               <h1>Welcome Admin </h1>
-              <input id="queryEmail" className='w-[10em] sm:min-w-[15em]' onChange={Inchange_queryEmail} />{" "}
+              <input
+                id="queryEmail"
+                className="w-[10em] sm:min-w-[15em]"
+                onChange={Inchange_queryEmail}
+              />{" "}
               <button
                 onClick={function () {
                   const inputQuery = document.getElementById("queryEmail");
@@ -220,20 +226,34 @@ export default function Profile() {
           {showParam("father name", fathername, setFathername)}
           {showParam("mother name", mothername, setMothername)}
         </div>
-        <div className=" w-[50%] justify-around flex mt-3">
-          <button
-            className="bg-blue-500 px-2 rounded-md  "
-            onClick={ResetValues}
-          >
-            Clear
-          </button>
-          <button
-            className="bg-blue-500 px-2 rounded-md  "
-            onClick={UpdateProfile}
-          >
-            Update
-          </button>
-        </div>
+        {type === "SuperAdmin" || type === "Admin" ? (
+          <div className=" w-[50%] justify-around flex mt-3">
+            <button
+              className="bg-blue-500 px-2 rounded-md  "
+              onClick={ResetValues}
+            >
+              Clear
+            </button>
+            <button
+              className="bg-blue-500 px-2 rounded-md  "
+              onClick={UpdateProfile}
+            >
+              Update
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button
+              onClick={function () {
+                window.open("/explore");
+              }}
+              className="bg-blue-500 px-2 rounded-md mt-3 "
+              // onClick={UpdateProfile}
+            >
+              Explore
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

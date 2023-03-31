@@ -42,14 +42,36 @@ const profileSchema = new mongoose.Schema({
   nationality: String,
   birthday: String,
   gender: String,
-  presentaddress: String,
-  presentcity: String,
-  permanentaddress: String,
-  permanentcity: String,
+  houselotnumber: String,
+  purok: String,
+  barangay: String,
+  city: String,
+
+  age: String,
+  civilstatus: String,
+  highesteducation: String,
+  schoolattended: String,
+  religion: String,
+  ethnicity: String,
+  contactnumber: String,
+  dateregistered: String,
+
+  religion: String,
+  ethnicity: String,
+  contactnumber: String,
+  telephonenumber: String,
+
+  // presentaddress: String,
+  // presentcity: String,
+  // permanentaddress: String,
+  // permanentcity: String,
   occupation: String,
   company: String,
   fathername: String,
   mothername: String,
+  connections:[],
+
+  dateregistered: String,
 
 
 });
