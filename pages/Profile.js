@@ -141,9 +141,9 @@ export default function Profile() {
   function showParam(label, value, setValue) {
     // ResetValues()
     return (
-      <div className="flex items-end justify-center pt-1 ">
-        <h2 className="absolute left-[2%] hidden sm:block"> {label}: </h2>
-        <h2 className=""> {value ? value : " <null value>"}</h2>
+      <div className="flex flex-col items-end pt-1 bg-gray-300 justify-end">
+        <div className="absolute left-[2%] hidden sm:block"> {label}: </div>
+        <div className="bg-red-200"> {value ? value : " <null value>"}</div>
 
         {adminOn == false ? (
           ""
@@ -171,10 +171,10 @@ export default function Profile() {
       />
 
       <div
-        className="  sm:min-w-[40%] bg-slate-300 sm:min-h-[80%] flex flex-col justify-center items-center
+        className="min-w-full  sm:min-w-[40%] bg-gray-300 sm:min-h-[80%] flex flex-col  items-center
                   text-center absolute opacity-[96%]"
       >
-        <div>
+        <div className="" >
           {adminOn == true ? (
             <div>
               <h1>Welcome Admin </h1>
@@ -226,6 +226,9 @@ export default function Profile() {
           {showParam("father name", fathername, setFathername)}
           {showParam("mother name", mothername, setMothername)}
         </div>
+
+
+
         {type === "SuperAdmin" || type === "Admin" ? (
           <div className=" w-[50%] justify-around flex mt-3">
             <button
@@ -243,6 +246,18 @@ export default function Profile() {
           </div>
         ) : (
           <div>
+            {/* <button
+              onClick={function () {
+                window.open("/explore");
+              }}
+              className="bg-blue-500 px-2 rounded-md mt-3 "
+              // onClick={UpdateProfile}
+            >
+              Explore
+            </button> */}
+          </div>
+        )}
+        <div>
             <button
               onClick={function () {
                 window.open("/explore");
@@ -253,7 +268,6 @@ export default function Profile() {
               Explore
             </button>
           </div>
-        )}
       </div>
     </div>
   );

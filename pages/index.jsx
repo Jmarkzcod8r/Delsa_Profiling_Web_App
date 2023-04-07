@@ -26,7 +26,7 @@ const Register = () => {
   useEffect(()=> {
     console.log ("Page location is: ",window.location.href ) ;
     setBaseURL (localStorage.setItem('baseURL', window.location.href)) ;
-  })
+  },[])
 
   const SignIn = async () => {
 

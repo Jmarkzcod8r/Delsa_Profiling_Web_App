@@ -376,56 +376,56 @@ export default function PreRegister() {
             className="m-2 text-center"
             value={houselotnumber}
             onChange={Inchange_Houselotnumber}
-            placeholder="Juandelacruz@gmail.com"
+            placeholder="B 13 L 5 Soledad Subdivision"
           />
           <p className="text-center"> Purok </p>
           <input
             className="m-2 text-center"
             value={purok}
             onChange={Inchange_Purok}
-            placeholder="************"
+            placeholder="Masagana"
           />
           <p className="text-center"> Barangay </p>
           <input
             className="m-2 text-center"
             value={barangay}
             onChange={Inchange_Barangay}
-            placeholder="Juan"
+            placeholder="Village"
           />
           <p className="text-center"> City</p>
           <input
             className="m-2 text-center"
             value={city}
             onChange={Inchange_City}
-            placeholder="De la Cruz"
+            placeholder="Cotabato"
           />
           <p className="text-center"> Age</p>
           <input
             className="m-2 text-center"
             value={age}
             onChange={Inchange_Age}
-            placeholder="Magbanua"
+            placeholder="31"
           />
           <p className="text-center"> Civil Status</p>
           <input
             className="m-2 text-center"
             value={civilstatus}
             onChange={Inchange_Civilstatus}
-            placeholder="Filipino"
+            placeholder="Single"
           />
           <p className="text-center"> Highest Education Attained</p>
           <input
             className="m-2 text-center"
             value={highesteducation}
             onChange={Inchange_Highesteducation}
-            placeholder="MM-DD-YYYY"
+            placeholder="Board Passer"
           />
           <p className="text-center"> School Attended</p>
           <input
             className="m-2 text-center"
             value={schoolattended}
             onChange={Inchange_Schoolattended}
-            placeholder="Male"
+            placeholder="Mindanao State University"
           />
 
           {/* <p className='text-center'> Education</p>
@@ -444,28 +444,28 @@ export default function PreRegister() {
             className="m-2 text-center"
             value={religion}
             onChange={Inchange_Religion}
-            placeholder="Magbanua"
+            placeholder="Protestant"
           />
           <p className="text-center"> Ethnicity</p>
           <input
             className="m-2 text-center"
             value={ethnicity}
             onChange={Inchange_Ethnicity}
-            placeholder="Filipino"
+            placeholder="Ilonggo"
           />
           <p className="text-center"> Contact Number</p>
           <input
             className="m-2 text-center"
             value={contactnumber}
             onChange={Inchange_Contactnumber}
-            placeholder="MM-DD-YYYY"
+            placeholder="09112233445"
           />
           <p className="text-center"> Telephone Number</p>
           <input
             className="m-2 text-center"
             value={telephonenumber}
             onChange={Inchange_Telephonenumber}
-            placeholder="Male"
+            placeholder="0275432797"
           />
           <p className="text-center"> Occupation</p>
           <input

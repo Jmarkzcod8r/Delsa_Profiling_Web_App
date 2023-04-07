@@ -66,7 +66,7 @@ export default async function handler(req, res) {
           }
           // newConnections.push {newConnection}
         );
-        res.status(200).json({ success: true, desc: "nice" });
+        res.status(200).json({ success: true, status: 'data added' });
       } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, error });
@@ -96,7 +96,7 @@ export default async function handler(req, res) {
 
     case "POST": //---> when 'axios.post' is called in our frontend, the system
       // goes to this .. POST & CREATE ... IF-THROW
-      console.log("commencong POST for post folder ", email, lastname);
+      console.log("commencong POST for post folder ", email, lastname, middlename);
       try {
         const data = await Profiling.find({
           $or: [
@@ -106,6 +106,10 @@ export default async function handler(req, res) {
             {
               lastname: lastname,
             },
+            {
+              middlename: middlename,
+            },
+
           ],
         });
         res.status(200).json({ data: data });

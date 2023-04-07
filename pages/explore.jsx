@@ -11,43 +11,124 @@ export default function Explore() {
   const [email, setEmail] = useState("");
   const [connectemail, setConnectemail] = useState("");
 
+  const [connectlist, setConnectlist] = useState([]);
+
   const [mainlist, setMainlist] = useState([]);
-  useEffect(() => {
-    console.log("explore");
-  });
+
+  const [conemails, setConemails] = useState ([])
+
+  async function getConnections() {
+    try {
+      // This is for getting connections
+      const { data } = await axios.post(
+        localStorage.getItem("baseURL") + "/api/explore2",
+        //Let's send these as body to the back-end
+        {
+          // lastname: lastname,
+          email: JSON.parse(localStorage.getItem("email")),
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      if (data) {
+        try {
+          console.log(data)
+          console.log("data for connectlist: ", data.data[0].connections)
+
+          setConnectlist(data.data[0].connections)
+          console.log("connectlist: ",data.data[0].connections)
+
+          localStorage.setItem("list", JSON.stringify(data.data[0].connections.map(obj=> obj.connectemail)))
+
+        } catch (err) {
+          console.log(err)
+        }
+
+      }
+    } catch (err) {
+      console.log("this is error: ",err);
+    }
+  }
+
+  const exlist = [];
 
   async function getData() {
     try {
+      console.log('connectlist aa: ',connectlist)
+      const conemailss = connectlist.map(obj => obj.connectemail)
+      setConemails(conemailss)
+
+      console.log('connectlist: bb',connectlist)
+      console.log('explorelist: ',explorelist)
+      console.log('conemails: ',conemailss)
+      console.log('coemails list: ',JSON.parse(localStorage.getItem('list')))
+      console.log('conemails: ',connectlist.map(obj => obj.connectemail))
+
+
       const { data } = await axios.post(
         localStorage.getItem("baseURL") + "/api/explore",
         //Let's send these as body to the back-end
         {
-          lastname: "Macabulos",
-          email: email,
+          lastname: localStorage.getItem("lastname"),
+          email: localStorage.getItem("email"),
+          middlename: localStorage.getItem("middlename"),
         },
         { headers: { "Content-Type": "application/json" } }
       );
       // return data
       if (data) {
-        // console.log(data.data)
-        //   const list = data.data
-        //   console.log(list)
-        setExplorelist(data.data);
+
+        // console.log("data: ",data)
+        const conemails = (JSON.parse(localStorage.getItem('list')))
+
+        // if (localStorage.getItem('Explorelistbool') != "true") {
+          for (let i = 0; i < data.data.length; i++) {
+            if (conemails.includes(data.data[i].email) ) {
+              console.log("match with ",data.data[i].email)
+
+              // console.log("this conemails: ",conemails)
+          } else {console.log("no match") ;  exlist.push(data.data[i]);}
+          }
+          // localStorage.setItem("Explorelistbool", "true");
+
+        // }
+
+        localStorage.setItem("Explorelist", JSON.stringify(conemails));
+        console.log('exlist: ',exlist)
+        setExplorelist(exlist);
+
+        // const { data } = await axios.post(
+        //   localStorage.getItem("baseURL") + "/api/explore2",
+        //   //Let's send these as body to the back-end
+        //   {
+        //     lastname: "Macabulos",
+        //     email: JSON.parse(localStorage.getItem("email")),
+        //   },
+        //   { headers: { "Content-Type": "application/json" } }
+        // );
+        // // return data
+        // if (data) {
+        //   console.log("data2: ",data)
+
+        // }
+
+
+
+
+
+
+
+
       }
     } catch (err) {
       console.log(err);
     }
 
-    // return data
+
+
+
   }
 
-  // const list = ''
-  useEffect(() => {
-    setEmail(JSON.parse(localStorage.getItem("email")));
-    //--> It's okay for me to  not useEffect,.okay! mindblown!
-    // console.log('asdsadd',getData())
-    getData();
-  }, [email]); //--> The empty array makes the useEffect to execute only once && it works
 
   async function UpdateConnections(
     email,
@@ -57,13 +138,7 @@ export default function Explore() {
     ellastname
   ) {
     try {
-      //   const newConnection = {
-      //     email: email,
-      //     connections: elemail,
-      //     firstname: elfirstname,
-      //     middlename: elmiddlename,
-      //     lastname: ellastname,
-      //   };
+
       const { response } = await axios.put(
         localStorage.getItem("baseURL") + "/api/explore",
         {
@@ -75,10 +150,22 @@ export default function Explore() {
         },
         { headers: { "Content-Type": "application/json" } }
       );
+      console.log("this is response: ", response)
     } catch (err) {
       console.log(err);
     }
+
   }
+
+  useEffect(() => {
+    setEmail(JSON.parse(localStorage.getItem("email")));
+    getConnections();
+    console.log(connectlist)
+    getData();
+    // console.log("explorelist: ",explorelist    )
+    // console.log(connectlist.length)
+    // console.log("connectlist: ", connectlist)
+  }, [email ]); //--> The empty array makes the useEffect to execute only once && it works
 
   return (
     <div className="bg-pink-300 h-screen flex justify-center items-center relative ">
@@ -109,10 +196,15 @@ export default function Explore() {
                     el.middlename,
                     el.lastname
                   );
+                  getConnections()
+                  getData()
+                  setConemails([...conemails,el.email])
+                  // conemails.push(el.email)
+
                   console.log("updating");
                 }}
               >
-                {el.email} {el.firstname} {el.middlename} {el.lastname}
+                {el.firstname} {el.middlename} {el.lastname} <strong>{el.email}</strong>
               </button>
             ))}
           </div>
@@ -124,17 +216,14 @@ export default function Explore() {
 
           <div className="flex flex-col w-full text-center">
             {/* {expl} */}
-            {explorelist.map((el) => (
-              <div key={el.connectemail} className="bg-pink-200 mb-2">
-                {el.firstname} {el.middlename} {el.lastname} {el.connectemail}
+            { connectlist.length !== 0 ? connectlist.map((el, index) => (
+              <div key={index} className="bg-pink-200 mb-2">
+               {index} {el.firstname} {el.middlename} {el.lastname} <strong>{el.connectemail}</strong>
               </div>
-            ))}
-            {/* {explorelist.map((el) => (
-            <button key={el.connectemail} className="bg-violet-500  mt-2">
-              {el.connectemail}
-            </button>
-          ))} */}
+            )):''}
+
           </div>
+
         </div>
       </div>
     </div>

@@ -105,7 +105,7 @@ export default async function handler(req, res) {
       }
       break;
 
-    case "POST": //---> when 'axios.post' is called in our frontend, the system
+      case "POST": //---> when 'axios.post' is called in our frontend, the system
       // goes to this .. POST & CREATE ... IF-THROW
       console.log("commencong POST for post folder ", email);
       try {
@@ -114,10 +114,10 @@ export default async function handler(req, res) {
         // const data = await Profiling.find({ email: email });
         // res.status(200).json({ data: data });
 
-        // const data2 = await Profiling.find({ email: email }, { connections: 1 });
+        const data = await Profiling.find({ email: email }, { connections: 1 });
 
         // res.status(200).json({ data: data.connections });
-        const data = await Profiling.find({ email: email });
+        // const data = await Profiling.find({ email: email });
 
         res.status(200).json({ data: data});
 
