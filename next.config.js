@@ -10,4 +10,5 @@ module.exports = {
   'https://lh3.googleusercontent.com', 'https://cdn.pixabay.com',"firebasestorage.googleapis.com"],
 
   },
+  pageExtensions: ['firebaseAPI.jsx','login2.jsx','index2.jsx']
 }
