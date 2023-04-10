@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import CotPic from "./Pics/Cot_panorama.png";
 import PreRegister from "./Pre-Register.jsx";
-import { storage } from "./firebaseAPI.jsx";
+import { storage } from "../etc/firebaseAPI.jsx";
 // import Image from "next/image.js";
 
 import {

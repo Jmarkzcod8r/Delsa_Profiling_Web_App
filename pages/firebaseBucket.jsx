@@ -1,5 +1,5 @@
 // import { useState, useEffect } from "react";
-import { storage } from "./firebaseAPI.jsx";
+import { storage } from "../etc/firebaseAPI.jsx";
 import Image from "next/image.js";
 // import {
 //   ref,
