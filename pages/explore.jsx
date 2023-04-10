@@ -86,38 +86,12 @@ export default function Explore() {
             if (conemails.includes(data.data[i].email) ) {
               console.log("match with ",data.data[i].email)
 
-              // console.log("this conemails: ",conemails)
           } else {console.log("no match") ;  exlist.push(data.data[i]);}
           }
-          // localStorage.setItem("Explorelistbool", "true");
-
-        // }
 
         localStorage.setItem("Explorelist", JSON.stringify(conemails));
         console.log('exlist: ',exlist)
         setExplorelist(exlist);
-
-        // const { data } = await axios.post(
-        //   localStorage.getItem("baseURL") + "/api/explore2",
-        //   //Let's send these as body to the back-end
-        //   {
-        //     lastname: "Macabulos",
-        //     email: JSON.parse(localStorage.getItem("email")),
-        //   },
-        //   { headers: { "Content-Type": "application/json" } }
-        // );
-        // // return data
-        // if (data) {
-        //   console.log("data2: ",data)
-
-        // }
-
-
-
-
-
-
-
 
       }
     } catch (err) {
@@ -218,7 +192,7 @@ export default function Explore() {
             {/* {expl} */}
             { connectlist.length !== 0 ? connectlist.map((el, index) => (
               <div key={index} className="bg-pink-200 mb-2">
-               {index} {el.firstname} {el.middlename} {el.lastname} <strong>{el.connectemail}</strong>
+            {/*    {index} */} {el.firstname} {el.middlename} {el.lastname} <strong>{el.connectemail}</strong>
               </div>
             )):''}
 
