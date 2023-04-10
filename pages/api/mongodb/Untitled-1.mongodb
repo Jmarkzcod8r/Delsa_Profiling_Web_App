@@ -11,11 +11,15 @@ use('Firedata');
 // db.logdatas.drop();
 
 // Insert a few documents into the sales collection.
-db.logdatas.insertMany([
-  // { '_id':'asdazxzasfs', 'item': 'aaaaabc', 'price': 10, 'quantity': 2, 'date': new Date('2014-03-01T08:00:00Z') },
-  // { '_id': 'asdasfs' , 'item': 'jkl', 'price': 20, 'quantity': 1, 'date': new Date('2014-03-01T09:00:00Z') },
-  {'name':'testname'}
-  ]);
+// db.profilings.insertMany([
+//   { '_id':'asdazxzasfs', 'item': 'aaaaabc', 'price': 10, 'quantity': 2, 'date': new Date('2014-03-01T08:00:00Z') },
+//   // { '_id': 'asdasfs' , 'item': 'jkl', 'price': 20, 'quantity': 1, 'date': new Date('2014-03-01T09:00:00Z') },
+//   // {'name':'testname'}
+//   ]);
+
+db.profilings.aggregate ( [
+  { $addFields: { "photoref": "none" } }
+])
 
 // Run a find command to view items sold on April 4th, 2014.
 // db.sales.find({ date: { $gte: new Date('2014-04-04'), $lt: new Date('2014-04-05') } });

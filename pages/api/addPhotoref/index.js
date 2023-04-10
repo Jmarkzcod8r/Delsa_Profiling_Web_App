@@ -13,8 +13,8 @@ export default async function handler(req, res) {
     firstname,
     lastname,
     middlename,
-    photoref,
     nationality,
+    photoref,
     birthday,
     gender,
     presentaddress,
@@ -108,13 +108,16 @@ export default async function handler(req, res) {
 
     case "POST": //---> when 'axios.post' is called in our frontend, the system
       // goes to this .. POST & CREATE ... IF-THROW
-      console.log("commencong POST for post folder.. " ,email);
+      console.log("commencing POST for post folder ", photoref, email);
       try {
-        const data = await Profiling.find({ email: email });
-
+        const data = await Profiling.updateOne(
+          { email : email },
+          {   photoref
+          },
+          // { new: true }
+          // const data = await Profiling.find({ email: email });
+                  );
         res.status(200).json({ data: data});
-
-
       } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, error });

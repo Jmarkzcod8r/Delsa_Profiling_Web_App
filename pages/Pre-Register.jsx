@@ -18,6 +18,8 @@ export default function PreRegister() {
 
   const [type, setType] = useState("Reg");
 
+  const [photoref, setPhotoref] = useState ('')
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -122,6 +124,7 @@ export default function PreRegister() {
             firstname: firstname,
             lastname: lastname,
             middlename: middlename,
+            photoref : photoref,
             nationality: nationality,
             birthday: birthday,
             gender: gender,

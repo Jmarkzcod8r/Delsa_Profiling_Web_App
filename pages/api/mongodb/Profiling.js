@@ -39,6 +39,9 @@ const profileSchema = new mongoose.Schema({
   firstname: String,
   lastname: String,
   middlename: String,
+
+  photoref: String,
+
   nationality: String,
   birthday: String,
   gender: String,
