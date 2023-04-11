@@ -79,7 +79,7 @@ const Register = () => {
 
   return (
     // <div>
-    <div className='bg-pink-300 h-screen flex justify-center items-center relative '>
+    <div className=' h-screen flex justify-center items-center relative '>
  <Image className='absolute w-screen relative'
 src={CotPic} layout="fill"
 alt=' '  />

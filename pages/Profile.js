@@ -49,6 +49,12 @@ export default function Profile() {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentpic, setCurrentpic] = useState("");
 
+  const [showFirst, setShowFirst] = useState(true)
+
+  const toggleDivs = () => {
+    setShowFirst(!showFirst)
+  }
+
 
 
   const folderRef = ref(storage, "images/");
@@ -256,19 +262,18 @@ export default function Profile() {
     );
   }
 
-  // // const lastImageUrl = imageUrls[imageUrls.length - 1];
-  // var xhr = new XMLHttpRequest();
-  // xhr.open('HEAD', imageUpload, true);
-  // xhr.onreadystatechange = function(){
-  //   if ( xhr.readyState == 4 ) {
-  //     if ( xhr.status == 200 ) {
-  //       alert('Size in bytes: ' + xhr.getResponseHeader('Content-Length'));
-  //     } else {
-  //       alert('ERROR');
-  //     }
-  //   }
-  // };
-  // xhr.send(null);
+  function toggleChildren() {
+    var child1 = document.querySelector('child1');
+    var child2 = document.querySelector('child2');
+
+    if (child1.style.display === 'none') {
+      child1.style.display = 'block';
+      child2.style.display = 'none';
+    } else {
+      child1.style.display = 'none';
+      child2.style.display = 'block';
+    }
+  }
 
   return (
     <div className="bg-violet-300 h-screen flex justify-center items-center">
@@ -350,6 +355,7 @@ export default function Profile() {
               </div>
             </div>
           )}
+          <div className='flex justify-center relative'>
           <button
             onClick={function () {
               window.open("/explore");
@@ -359,9 +365,14 @@ export default function Profile() {
           >
             Explore
           </button>
-          {/* <div className="bg-pink-400"> */}
+            <button className='right-0 absolute bg-red-200 align-middle self-center rounded-md m-3'
+              onClick={toggleDivs}
+            >Toggle</button>
+            </div>
+
+            <div className={showFirst ? 'block' : 'hidden'} >
           {showParam("email", email, setEmail)}
-          {/* {showParam("password", password, setPassword)} */}
+
           {showParam("firstname", firstname, setFirstname)}
           {showParam("lastname", lastname, setLastname)}
           {showParam("middlename", middlename, setMiddlename)}
@@ -379,7 +390,29 @@ export default function Profile() {
           {showParam("occupation", occupation, setOccupation)}
           {showParam("father name", fathername, setFathername)}
           {showParam("mother name", mothername, setMothername)}
-          {/* </div> */}
+          </div>
+          <div className={showFirst ? 'hidden' : 'block'} >
+          {/* {showParam("email", email, setEmail)}
+
+          {showParam("firstname", firstname, setFirstname)}
+          {showParam("lastname", lastname, setLastname)}
+          {showParam("middlename", middlename, setMiddlename)}
+          {showParam("nationality", nationality, setNationality)}
+          {showParam("birthday", birthday, setBirthday)}
+          {showParam("gender", gender, setGender)}
+          {showParam("present address", presentaddress, setPresentaddress)}
+          {showParam("present city ", presentcity, setPresentcity)}
+          {showParam(
+            "permanent address",
+            permanentaddress,
+            setPermanentaddress
+          )}
+          {showParam("permanent city", permanentcity, setPermanentcity)}
+          {showParam("occupation", occupation, setOccupation)}
+          {showParam("father name", fathername, setFathername)}
+          {showParam("mother name", mothername, setMothername)} */}
+          No display
+          </div>
         </div>
 
         {type === "SuperAdmin" || type === "Admin" ? (
