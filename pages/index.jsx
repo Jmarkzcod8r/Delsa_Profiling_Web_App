@@ -89,9 +89,9 @@ alt=' '  />
         <Image src={CotBrgy} height={70} width={70} alt='' />
       </div>
       <p className='text-center'> E-mail</p>
-        <input className='m-2'  value={email} onChange={Inchange_Email}  placeholder='Juandelacruz@gmail.com'/>
+        <input className='m-2'  value={email} onChange={Inchange_Email}  placeholder='Super or kim@gmail.com'/>
         <p className='text-center'> Password</p>
-        <input className='m-2'  value={password} onChange={Inchange_Password}  placeholder='1234567'/>
+        <input className='m-2'  value={password} onChange={Inchange_Password}  placeholder='admin or 1234567'/>
         <div className='flex flex-row justify-center pt-5'>
 
             <button className='bg-gray-400 w-20 mx-2 rounded-md' onClick={function (){window.open("/Register")}} >Register</button>
