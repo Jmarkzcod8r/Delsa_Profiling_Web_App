@@ -36,10 +36,26 @@ export default function Profile() {
   const [nationality, setNationality] = useState("");
   const [birthday, setBirthday] = useState("");
   const [gender, setGender] = useState("");
+
   const [presentaddress, setPresentaddress] = useState("");
   const [presentcity, setPresentcity] = useState("");
   const [permanentaddress, setPermanentaddress] = useState("");
   const [permanentcity, setPermanentcity] = useState("");
+
+  const [houselotnum, setHouselotnum] = useState("");
+  const [purok, setPurok] = useState("");
+  const [barangay, setBarangay] = useState("");
+  const [city, setCity] = useState("");
+  const [age, setAge] = useState("");
+  const [civilstatus, setCivilstatus] = useState("");
+  const [highestedu, setHighestedu] = useState("");
+  const [school, setSchool] = useState("");
+  const [religion, setReligion] = useState("");
+  const [ethnicity, setEthnicity] = useState("");
+  const [contactnum, setContactnum] = useState("");
+  const [datareg, setDatereg] = useState("");
+  const [telnum, setTelnum] = useState("");
+
   const [occupation, setOccupation] = useState("");
   const [company, setCompany] = useState("");
   const [fathername, setFathername] = useState("");
@@ -49,13 +65,11 @@ export default function Profile() {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentpic, setCurrentpic] = useState("");
 
-  const [showFirst, setShowFirst] = useState(true)
+  const [showFirst, setShowFirst] = useState(true);
 
   const toggleDivs = () => {
-    setShowFirst(!showFirst)
-  }
-
-
+    setShowFirst(!showFirst);
+  };
 
   const folderRef = ref(storage, "images/");
 
@@ -72,39 +86,29 @@ export default function Profile() {
     //   });
     // });
 
-  const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-  uploadBytes(imageRef, imageUpload).then((snapshot) => {
-    getDownloadURL(snapshot.ref).then((url) => {
-      // setCurrentpic(url);
-      setPhotoref(url)
-      // console.log("this url: ",url)
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        // setCurrentpic(url);
+        setPhotoref(url);
+        // console.log("this url: ",url)
 
-      const handleUpload = async () => {
-        // Send a POST request to your backend API endpoint to save the photo reference to MongoDB
-        try {
-          const response = await axios.post(`/api/addPhotoref`, { photoref : url, email: email });
-          console.log(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
+        const handleUpload = async () => {
+          // Send a POST request to your backend API endpoint to save the photo reference to MongoDB
+          try {
+            const response = await axios.post(`/api/addPhotoref`, {
+              photoref: url,
+              email: email,
+            });
+            console.log(response.data);
+          } catch (error) {
+            console.error(error);
+          }
+        };
 
-      handleUpload()
-
-
-
-
-
-
-      // setImageUrls((prev) => [...prev, url]);
-      // setPhotoref(imageRef[0]._location._path)
+        handleUpload();
       });
     });
-
-
-
-
-
   };
   //-------------------- cont uploadFile ---------------->
 
@@ -150,17 +154,32 @@ export default function Profile() {
           setFirstname(data.data[0].firstname);
           setLastname(data.data[0].lastname);
           setMiddlename(data.data[0].middlename);
-          // if (!photoref) {
-            setPhotoref(data.data[0].photoref)
-          // }
-
+          setPhotoref(data.data[0].photoref);
           setNationality(data.data[0].nationality);
           setBirthday(data.data[0].birthday);
           setGender(data.data[0].gender);
+
+          setHouselotnum(data.data[0].houselotnumber);
+          setPurok(data.data[0].purok);
+          setBarangay(data.data[0].barangay);
+          setCity(data.data[0].city);
+          setAge(data.data[0].age);
+          setCivilstatus(data.data[0].civilstatus);
+          setHighestedu(data.data[0].highesteducation);
+          setSchool(data.data[0].schoolattended);
+          setReligion(data.data[0].religion);
+          setEthnicity(data.data[0].ethnicity);
+          setContactnum(data.data[0].contactnumber);
+
+          setDatereg(data.data[0].dateregistered);
+
+          setTelnum(data.data[0].telephonenumber);
+
           setPresentaddress(data.data[0].presentaddress);
           setPresentcity(data.data[0].presentcity);
           setPermanentaddress(data.data[0].permanentaddress);
           setPermanentcity(data.data[0].permanentcity);
+
           setOccupation(data.data[0].occupation);
           setCompany(data.data[0].company);
           setFathername(data.data[0].fathername);
@@ -239,12 +258,15 @@ export default function Profile() {
   function showParam(label, value, setValue) {
     // ResetValues()
     return (
-      <div className="flex flex-col w-full items-center pt-1 justify-center ">
+      <div className="flex  w-full items-center pt-1 justify-around">
+
         <div className="absolute left-[2%] hidden sm:block"> {label}: </div>
-        <div className="bg-red-200 justify-center items-center align-center flex ">
-          {" "}
-          {value ? value : " <null value>"}
-        </div>
+
+        { adminOn == true ? (<div>&nbsp;</div>) : ( <div className="bg-red-200 justify-center items-center align-center flex ">
+          {value ? value : " <null value>"}  </div>
+          )}
+
+
 
         {adminOn == false ? (
           ""
@@ -252,7 +274,7 @@ export default function Profile() {
           ""
         ) : (
           <input
-            className="absolute right-[2%] w-[8em] hidden sm:block {}  "
+            className="absolute right-[3.5%] w-[19em] hidden sm:block {}  "
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
@@ -263,15 +285,15 @@ export default function Profile() {
   }
 
   function toggleChildren() {
-    var child1 = document.querySelector('child1');
-    var child2 = document.querySelector('child2');
+    var child1 = document.querySelector("child1");
+    var child2 = document.querySelector("child2");
 
-    if (child1.style.display === 'none') {
-      child1.style.display = 'block';
-      child2.style.display = 'none';
+    if (child1.style.display === "none") {
+      child1.style.display = "block";
+      child2.style.display = "none";
     } else {
-      child1.style.display = 'none';
-      child2.style.display = 'block';
+      child1.style.display = "none";
+      child2.style.display = "block";
     }
   }
 
@@ -355,28 +377,58 @@ export default function Profile() {
               </div>
             </div>
           )}
-          <div className='flex justify-center relative'>
-          <button
-            onClick={function () {
-              window.open("/explore");
-            }}
-            className="bg-blue-500 px-2 rounded-md m-3  "
-            // onClick={UpdateProfile}
-          >
-            Explore
-          </button>
-            <button className='right-0 absolute bg-red-200 align-middle self-center rounded-md m-3'
+          <div className="flex justify-center relative">
+            <button
+              onClick={function () {
+                window.open("/explore");
+              }}
+              className="bg-blue-500 px-2 rounded-md m-3  "
+              // onClick={UpdateProfile}
+            >
+              Explore
+            </button>
+            <button
+              className="right-0 absolute bg-red-200 align-middle self-center rounded-md m-3"
               onClick={toggleDivs}
-            >Toggle</button>
-            </div>
+            >
+              Toggle
+            </button>
+          </div>
 
-            <div className={showFirst ? 'block' : 'hidden'} >
-          {showParam("email", email, setEmail)}
+          <div className={showFirst ? "block" : "hidden"}>
+            {showParam("email", email, setEmail)}
 
-          {showParam("firstname", firstname, setFirstname)}
-          {showParam("lastname", lastname, setLastname)}
-          {showParam("middlename", middlename, setMiddlename)}
-          {showParam("nationality", nationality, setNationality)}
+            {showParam("firstname", firstname, setFirstname)}
+            {showParam("lastname", lastname, setLastname)}
+            {showParam("middlename", middlename, setMiddlename)}
+            {showParam("nationality", nationality, setNationality)}
+            {showParam("birthday", birthday, setBirthday)}
+            {showParam("gender", gender, setGender)}
+            {showParam("House & Lot no.",houselotnum, setHouselotnum) }
+            {showParam("purok", purok, setPurok)}
+            {showParam("barangay", barangay, setBarangay)}
+          {showParam("city", city, setCity)}
+          {showParam("age", age, setAge)}
+          {showParam("civil status", civilstatus, setCivilstatus)}
+            {/* {showParam("present address", presentaddress, setPresentaddress)}
+            {showParam("present city ", presentcity, setPresentcity)}
+            {showParam(
+              "permanent address",
+              permanentaddress,
+              setPermanentaddress
+            )}
+
+            {showParam("permanent city", permanentcity, setPermanentcity)} */}
+
+          </div>
+          <div className={showFirst ? "hidden" : "block"}>
+
+
+            {showParam("occupation", occupation, setOccupation)}
+            {showParam("father name", fathername, setFathername)}
+            {showParam("mother name", mothername, setMothername)}
+
+
           {showParam("birthday", birthday, setBirthday)}
           {showParam("gender", gender, setGender)}
           {showParam("present address", presentaddress, setPresentaddress)}
@@ -390,32 +442,12 @@ export default function Profile() {
           {showParam("occupation", occupation, setOccupation)}
           {showParam("father name", fathername, setFathername)}
           {showParam("mother name", mothername, setMothername)}
-          </div>
-          <div className={showFirst ? 'hidden' : 'block'} >
-          {/* {showParam("email", email, setEmail)}
-
-          {showParam("firstname", firstname, setFirstname)}
-          {showParam("lastname", lastname, setLastname)}
-          {showParam("middlename", middlename, setMiddlename)}
-          {showParam("nationality", nationality, setNationality)}
-          {showParam("birthday", birthday, setBirthday)}
-          {showParam("gender", gender, setGender)}
-          {showParam("present address", presentaddress, setPresentaddress)}
-          {showParam("present city ", presentcity, setPresentcity)}
-          {showParam(
-            "permanent address",
-            permanentaddress,
-            setPermanentaddress
-          )}
-          {showParam("permanent city", permanentcity, setPermanentcity)}
-          {showParam("occupation", occupation, setOccupation)}
-          {showParam("father name", fathername, setFathername)}
-          {showParam("mother name", mothername, setMothername)} */}
-          No display
+            {/* No display */}
           </div>
         </div>
+        {/* {type === "SuperAdmin" || type === "Admin" ? ( */}
+        {adminOn == true ? (
 
-        {type === "SuperAdmin" || type === "Admin" ? (
           <div className=" w-[50%] justify-around flex mt-3">
             <button
               className="bg-blue-500 px-2 rounded-md  "
@@ -443,9 +475,7 @@ export default function Profile() {
             </button> */}
           </div>
         )}
-        <div>
-
-        </div>
+        <div></div>
       </div>
     </div>
   );
