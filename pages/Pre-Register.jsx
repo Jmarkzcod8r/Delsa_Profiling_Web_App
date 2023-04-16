@@ -38,6 +38,7 @@ export default function PreRegister() {
   const [mothername, setMothername] = useState("");
   const [age, setAge] = useState("");
   const [civilstatus, setCivilstatus] = useState("");
+
   const [highesteducation, setHighesteducation] = useState("");
   const [schoolattended, setSchoolattended] = useState("");
   const [religion, setReligion] = useState("");

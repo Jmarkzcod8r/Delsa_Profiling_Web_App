@@ -48,6 +48,7 @@ export default function Profile() {
   const [city, setCity] = useState("");
   const [age, setAge] = useState("");
   const [civilstatus, setCivilstatus] = useState("");
+
   const [highestedu, setHighestedu] = useState("");
   const [school, setSchool] = useState("");
   const [religion, setReligion] = useState("");
@@ -235,7 +236,8 @@ export default function Profile() {
         .then(alert("Entry Updated"));
     } catch (error) {
       console.log(error);
-    }
+    } ;
+    location.reload()
   };
 
   function ResetValues() {
@@ -409,7 +411,7 @@ export default function Profile() {
             {showParam("barangay", barangay, setBarangay)}
           {showParam("city", city, setCity)}
           {showParam("age", age, setAge)}
-          {showParam("civil status", civilstatus, setCivilstatus)}
+
             {/* {showParam("present address", presentaddress, setPresentaddress)}
             {showParam("present city ", presentcity, setPresentcity)}
             {showParam(
@@ -423,23 +425,36 @@ export default function Profile() {
           </div>
           <div className={showFirst ? "hidden" : "block"}>
 
+{/* const [highestedu, setHighestedu] = useState("");
+  const [school, setSchool] = useState("");
+  const [religion, setReligion] = useState("");
+  const [ethnicity, setEthnicity] = useState("");
+  const [contactnum, setContactnum] = useState("");
+  const [datareg, setDatereg] = useState("");
+  const [telnum, setTelnum] = useState("");
 
+  const [occupation, setOccupation] = useState("");
+  const [company, setCompany] = useState("");
+  const [fathername, setFathername] = useState("");
+  const [mothername, setMothername] = useState(""); */}
+
+  {showParam("civil status", civilstatus, setCivilstatus)}
             {showParam("occupation", occupation, setOccupation)}
-            {showParam("father name", fathername, setFathername)}
-            {showParam("mother name", mothername, setMothername)}
+            {showParam("highest education", highestedu, setHighestedu)}
+            {showParam("school attended", school, setSchool)}
 
 
-          {showParam("birthday", birthday, setBirthday)}
-          {showParam("gender", gender, setGender)}
-          {showParam("present address", presentaddress, setPresentaddress)}
-          {showParam("present city ", presentcity, setPresentcity)}
+          {showParam("religion", religion, setReligion)}
+          {showParam("ethnicity", ethnicity, setEthnicity)}
+          {showParam("contact no.", contactnum, setContactnum)}
+          {showParam("telephone no. ", telnum, setTelnum)}
           {showParam(
-            "permanent address",
-            permanentaddress,
-            setPermanentaddress
+            "company",
+            company,
+            setCompany
           )}
-          {showParam("permanent city", permanentcity, setPermanentcity)}
-          {showParam("occupation", occupation, setOccupation)}
+          {/* {showParam("permanent city", permanentcity, setPermanentcity)} */}
+          {/* {showParam("occupation", occupation, setOccupation)} */}
           {showParam("father name", fathername, setFathername)}
           {showParam("mother name", mothername, setMothername)}
             {/* No display */}
@@ -457,7 +472,7 @@ export default function Profile() {
             </button>
             <button
               className="bg-blue-500 px-2 rounded-md  "
-              onClick={UpdateProfile}
+              onClick={UpdateProfile }
             >
               Update
             </button>
